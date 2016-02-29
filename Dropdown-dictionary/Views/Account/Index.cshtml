@@ -1,0 +1,49 @@
+﻿@model FilerPrintableOnlyTextInput.Models.AccountModel
+
+@{ ViewBag.Title = "Your profile"; }
+
+<div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+
+        <h1>Your profile</h1>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                @using (Html.BeginForm("UpdateAccount", // Controller Action
+                                       "Account", // Controller name
+                                       FormMethod.Post, new { role = "form" })) {
+
+                    @* Account Name textbox *@
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.AccountName)
+                        @Html.TextBoxFor(m => m.AccountName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.AccountName)
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Update</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // Unobtrusive validation
+    $(document).ready(function () {
+        var form = $('form')
+          , formData = $.data(form[0])
+          , settings = formData.validator.settings
+          , oldErrorPlacement = settings.errorPlacement
+          , oldSuccess = settings.success;
+
+        settings.errorPlacement = function (label, element) {
+            oldErrorPlacement(label, element);
+            label.parents('.form-group').addClass('has-error');
+            label.addClass('text-danger');
+        };
+
+        settings.success = function (label) {
+            label.parents('.form-group').removeClass('has-error');
+            oldSuccess(label);
+        };
+    });
+</script>

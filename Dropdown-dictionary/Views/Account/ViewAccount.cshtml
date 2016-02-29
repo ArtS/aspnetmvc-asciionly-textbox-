@@ -1,0 +1,26 @@
+﻿@model FilerPrintableOnlyTextInput.Models.AccountModel
+@{
+    ViewBag.Title = "Welcome";
+}
+
+<div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+        
+        <h2>Welcome</h2>
+
+        <div class="panel panel-default">
+            <div class="panel-body">              
+
+                <p>Your acount details</p>
+
+                <dl>
+                    <dt>Account Name</dt>
+                    <dd>@Model.AccountName</dd>
+
+                    <dt><a href="@Url.Action("Index")">Edit account</a></dt>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
